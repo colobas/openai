@@ -34,7 +34,7 @@
 
 (cl-defun openai-file-list ( callback
                              &key
-                             (key openai-key))
+                             (key (funcall openai-key-getter)))
   "Return a list of files that belong to the user's organization.
 
 The argument CALLBACK is execuated after request is made.
@@ -52,7 +52,7 @@ it in."
 
 (cl-defun openai-file-upload ( file purpose callback
                                &key
-                               (key openai-key))
+                               (key (funcall openai-key-getter)))
   "Upload a file that contain document(s) to be used across various
 endpoints/features.
 
@@ -84,7 +84,7 @@ it in."
 
 (cl-defun openai-file-delete ( file-id callback
                                &key
-                               (key openai-key))
+                               (key (funcall openai-key-getter)))
   "Delete a file.
 
 The arument FILE-ID is id of the file to use for this request.
@@ -106,7 +106,7 @@ it in."
 
 (cl-defun openai-file-retrieve ( file-id callback
                                  &key
-                                 (key openai-key))
+                                 (key (funcall openai-key-getter)))
   "Return information about a specific file.
 
 The arument FILE-ID is id of the file to use for this request.
@@ -128,7 +128,7 @@ it in."
 
 (cl-defun openai-file-retrieve-content ( file-id callback
                                          &key
-                                         (key openai-key))
+                                         (key (funcall openai-key-getter)))
   "Return the contents of the specified file
 
 The arument FILE-ID is id of the file to use for this request.

@@ -34,7 +34,7 @@
 
 (cl-defun openai-moderation-create ( input callback
                                      &key
-                                     (key openai-key)
+                                     (key (funcall openai-key-getter))
                                      (model "text-moderation-latest"))
   "Classifies if text violates OpenAI's Content Policy.
 

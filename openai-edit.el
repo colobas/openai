@@ -34,7 +34,7 @@
 
 (cl-defun openai-edit-create ( input instruction callback
                                &key
-                               (key openai-key)
+                               (key (funcall openai-key-getter))
                                (model "text-davinci-edit-001")
                                temperature
                                top-p

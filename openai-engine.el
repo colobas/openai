@@ -36,7 +36,7 @@
 
 (cl-defun openai-engine-list ( callback
                                &key
-                               (key openai-key))
+                               (key (funcall openai-key-getter)))
   "Lists the currently available (non-finetuned) models, and provides basic
 information about each one such as the owner and availability.
 
@@ -55,7 +55,7 @@ it in."
 
 (cl-defun openai-engine-retrieve ( engine-id callback
                                    &key
-                                   (key openai-key))
+                                   (key (funcall openai-key-getter)))
   "Retrieves a model instance, providing basic information about it such as the
 owner and availability.
 

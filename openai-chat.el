@@ -34,7 +34,7 @@
 ;;;###autoload
 (cl-defun openai-chat ( messages callback
                         &key
-                        (key openai-key)
+                        (key (funcall openai-key-getter))
                         (model "gpt-3.5-turbo")
                         temperature
                         top-p

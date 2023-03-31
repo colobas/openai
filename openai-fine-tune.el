@@ -33,7 +33,7 @@
 
 (cl-defun openai-fine-tune-create ( training-file callback
                                     &key
-                                    (key openai-key)
+                                    (key (funcall openai-key-getter))
                                     (model "curie")
                                     validation-file
                                     n-epochs
@@ -87,7 +87,7 @@ CLASSIFICATION-POSITIVE-CLASS, CLASSIFICATION-BETAS, and SUFFIX"
 
 (cl-defun openai-fine-tune-list ( callback
                                   &key
-                                  (key openai-key))
+                                  (key (funcall openai-key-getter)))
   "List your organization's fine-tuning jobs.
 
 The argument CALLBACK is execuated after request is made."
@@ -102,7 +102,7 @@ The argument CALLBACK is execuated after request is made."
 
 (cl-defun openai-fine-tune-retrieve ( fine-tune-id callback
                                       &key
-                                      (key openai-key))
+                                      (key (funcall openai-key-getter)))
   "Gets info about the fine-tune job.
 
 The FINE-TUNE-ID of the fine-tune job.
@@ -119,7 +119,7 @@ The argument CALLBACK is execuated after request is made."
 
 (cl-defun openai-fine-tune-cancel ( fine-tune-id callback
                                     &key
-                                    (key openai-key))
+                                    (key (funcall openai-key-getter)))
   "Immediately cancel a fine-tune job.
 
 The FINE-TUNE-ID of the fine-tune job to cancel.
@@ -136,7 +136,7 @@ The argument CALLBACK is execuated after request is made."
 
 (cl-defun openai-fine-tune-list-events ( fine-tune-id callback
                                          &key
-                                         (key openai-key))
+                                         (key (funcall openai-key-getter)))
   "Get fine-grained status updates for a fine-tune job.
 
 The FINE-TUNE-ID of the fine-tune job to get events for.
@@ -153,7 +153,7 @@ The argument CALLBACK is execuated after request is made."
 
 (cl-defun openai-fine-tune-delete ( model callback
                                     &key
-                                    (key openai-key))
+                                    (key (funcall openai-key-getter)))
   "Delete a fine-tuned model.  You must have the Owner role in your organization.
 
 The MODEL to delete.

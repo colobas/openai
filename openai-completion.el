@@ -34,7 +34,7 @@
 ;;;###autoload
 (cl-defun openai-completion ( prompt callback
                               &key
-                              (key openai-key)
+                              (key (funcall openai-key-getter))
                               (model "text-davinci-003")
                               suffix
                               max-tokens

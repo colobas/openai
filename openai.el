@@ -63,6 +63,11 @@
 (defvar openai-key ""
   "Generated API key.")
 
+(defcustom openai-key-getter (lambda () openai-key)
+  "Function to retrieve the OpenAI API Token"
+  :type 'function
+  :group 'openai)
+
 (defvar openai-user ""
   "A unique identifier representing your end-user, which can help OpenAI to
 monitor and detect abuse.")
@@ -104,15 +109,16 @@ See https://beta.openai.com/docs/guides/error-codes/api-errors."
 
 The URL is the url for `request' function; then BODY is the arguments for rest."
   (declare (indent 1))
-  `(if (string-empty-p openai-key)
-       (user-error "[INFO] Invalid API key, please set it to the correct value: %s" openai-key)
-     (setq openai-error nil)
-     (request ,url
-       :error (cl-function
-               (lambda (&key response &allow-other-keys)
-                 (setq openai-error response)
-                 (openai--handle-error response)))
-       ,@body)))
+  `(let (openai-key (funcall openai-key-getter))
+     (if (string-empty-p openai-key)
+         (user-error "[INFO] Invalid API key, please set it to the correct value: %s" openai-key)
+       (setq openai-error nil)
+       (request ,url
+         :error (cl-function
+                 (lambda (&key response &allow-other-keys)
+                   (setq openai-error response)
+                   (openai--handle-error response)))
+         ,@body))))
 
 ;;
 ;;; Util

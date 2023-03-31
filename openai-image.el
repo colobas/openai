@@ -33,7 +33,7 @@
 
 (cl-defun openai-image ( prompt callback
                          &key
-                         (key openai-key)
+                         (key (funcall openai-key-getter))
                          n
                          size
                          response-format
@@ -66,7 +66,7 @@ for more information.  Arguments here refer to N, SIZE, and RESPONSE-FORMAT."
 
 (cl-defun openai-image-edit ( image prompt callback
                               &key
-                              (key openai-key)
+                              (key (funcall openai-key-getter))
                               mask
                               n
                               size
@@ -102,7 +102,7 @@ RESPONSE-FORMAT."
 
 (cl-defun openai-image-variation ( image callback
                                    &key
-                                   (key openai-key)
+                                   (key (funcall openai-key-getter))
                                    mask
                                    n
                                    size

@@ -35,9 +35,20 @@ interactable commands you can use, and those are mostly examples.*
 ## 🔨 Usage
 
 You will need to set up your API key before you can use this library.
+You can either set it directly (not recommended):
 
 ```elisp
 (setq openai-key "[YOUR API KEY]")
+```
+
+Or you can define a function that retrieves it, e.g. from a password manager:
+
+``` elisp
+;; idea taken from https://github.com/junjizhi/aide.el
+(customize-set-variable
+  'openai-key-getter
+  (lambda ()
+    (auth-source-pass-get 'secret "openai.com/user-handle/api-key")))
 ```
 
 For requests that need your user identifier,

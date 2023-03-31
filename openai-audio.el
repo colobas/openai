@@ -34,7 +34,7 @@
 ;;;###autoload
 (cl-defun openai-audio-create-transcription ( file callback
                                               &key
-                                              (key openai-key)
+                                              (key (funcall openai-key-getter))
                                               (model "whisper-1")
                                               prompt
                                               response-format
@@ -71,7 +71,7 @@ TEMPERATURE, and LANGUAGE."
 ;;;###autoload
 (cl-defun openai-audio-create-translation ( file callback
                                             &key
-                                            (key openai-key)
+                                            (key (funcall openai-key-getter))
                                             (model "whisper-1")
                                             prompt
                                             response-format

@@ -34,7 +34,7 @@
 
 (cl-defun openai-embedding-create ( input callback
                                     &key
-                                    (key openai-key)
+                                    (key (funcall openai-key-getter))
                                     (model "text-embedding-ada-002")
                                     (user openai-user))
   "Creates an embedding vector representing the input text.

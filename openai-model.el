@@ -31,7 +31,7 @@
 
 (cl-defun openai-models ( callback
                           &key
-                          (key openai-key))
+                          (key (funcall openai-key-getter)))
   "Return models data and execute the CALLBACK.
 
 Arguments KEY is global options; however, you can overwrite the value by passing
@@ -47,7 +47,7 @@ it in."
 
 (cl-defun openai-model ( model callback
                          &key
-                         (key openai-key))
+                         (key (funcall openai-key-getter)))
   "Return MODEL data and execute the CALLBACK.
 
 Arguments KEY is global options; however, you can overwrite the value by passing
